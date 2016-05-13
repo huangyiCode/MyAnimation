@@ -61,7 +61,7 @@ FloatingActionButton mFloatBtn;
         //with表示同时进行   after表示按顺序执行
         animSet.play(objAnimatorX).with(objAnimatorY);
         animSet.setDuration(5000);
-//        animSet.start();
+        animSet.start();
 //       TextView tv= (TextView) findViewById(R.id.aaaaaaa);
 //        tv.setText("哈哈");
        Log.e("ceshi","数值CENTER"+((CENTER|BOTTOM)&CENTER));
@@ -75,19 +75,19 @@ FloatingActionButton mFloatBtn;
         Log.e("ceshi","densityDpi===="+densityDpi);
 
         //实现数值的渐变    先加速后减速
-//        ValueAnimator valueAnimator=ValueAnimator.ofFloat(5f,1f,3f,8f);
-//        valueAnimator.setDuration(5000);
-//        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//            @Override
-//            public void onAnimationUpdate(ValueAnimator animation) {
-//                //拿到当前所对应的值
-////                animation.getAnimatedValue()
-//                //拿到当前位置所占的百分比
-////                getAnimatedFraction
-//                Log.e("ValueAnimator",""+animation.getAnimatedFraction()+Thread.currentThread().getName());
-//            }
-//        });
-//        valueAnimator.start();
+        ValueAnimator valueAnimator=ValueAnimator.ofFloat(5f,1f,3f,8f);
+        valueAnimator.setDuration(5000);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                //拿到当前所对应的值
+//                animation.getAnimatedValue()
+                //拿到当前位置所占的百分比
+//                getAnimatedFraction
+                Log.e("ValueAnimator",""+animation.getAnimatedFraction()+Thread.currentThread().getName());
+            }
+        });
+        valueAnimator.start();
         mFloatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,5 +112,6 @@ FloatingActionButton mFloatBtn;
                 });
             }
         });
+        //
     }
 }
