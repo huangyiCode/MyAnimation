@@ -1,4 +1,4 @@
-package com.example.huangyi.myanimation;
+package com.example.huangyi.myanimation.model;
 
 import retrofit.Call;
 import retrofit.http.GET;

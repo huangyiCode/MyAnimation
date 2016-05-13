@@ -1,4 +1,4 @@
-package com.example.huangyi.myanimation;
+package com.example.huangyi.myanimation.activity;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -7,13 +7,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.huangyi.myanimation.model.ApiService;
+import com.example.huangyi.myanimation.model.GetIpInfoResponse;
+import com.example.huangyi.myanimation.R;
 
 import java.util.ArrayList;
 
