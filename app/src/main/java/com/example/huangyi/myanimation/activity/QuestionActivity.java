@@ -1,6 +1,8 @@
 package com.example.huangyi.myanimation.activity;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.huangyi.myanimation.BaseActivity;
 
@@ -11,6 +13,7 @@ public class QuestionActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initView();
     }
 
     @Override
@@ -27,6 +30,14 @@ public class QuestionActivity extends BaseActivity {
         String sameString="sameString";
         sameMethod(sameString);
 
+        int fee=200;
+        s
+        :save(fee);
+        b
+        :saveDefault(fee);
+
+
+
     }
 
     //TODO 方法无法定向问题
@@ -37,4 +48,15 @@ public class QuestionActivity extends BaseActivity {
     private void sameMethod(String... str){
 
     }
+
+
+
+    static void saveDefault(int fee){
+        Log.d("test","saveDefault");
+    }
+
+    static void save(int fee){
+        Log.d("test","save");
+    }
+
 }
