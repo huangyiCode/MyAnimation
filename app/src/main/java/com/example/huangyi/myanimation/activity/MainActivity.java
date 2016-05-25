@@ -3,35 +3,28 @@ package com.example.huangyi.myanimation.activity;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.Switch;
 
-import com.example.huangyi.myanimation.model.ApiService;
-import com.example.huangyi.myanimation.model.GetIpInfoResponse;
+import com.example.huangyi.myanimation.BaseActivity;
 import com.example.huangyi.myanimation.R;
+import com.example.huangyi.myanimation.activity.fragment.TwoActivity;
+import com.example.huangyi.myanimation.utils.DisplayUtils;
 
-import java.util.ArrayList;
-
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
-
-public class MainActivity extends AppCompatActivity {
-FloatingActionButton mFloatBtn;
-    WebView mWebView;
+public class MainActivity extends BaseActivity implements View.OnClickListener {
+FloatingActionButton mFOneloatBtn;
+    FloatingActionButton mFTwoloatBtn;
+    FloatingActionButton mFThreeloatBtn;
     public static final int CENTER=0x000000010;
     public static final int LEFT=0x000000020;
     public static final int RIGHT=0x000000040;
     public static final int TOP=0x000000060;
     public static final int BOTTOM=0x000000080;
-    public ArrayList<String> list=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,39 +33,37 @@ FloatingActionButton mFloatBtn;
     }
 
     @Override
-    public void onContentChanged() {
-        super.onContentChanged();
-        mFloatBtn= (FloatingActionButton) findViewById(R.id.float_btn);
-        mWebView= (WebView) findViewById(R.id.web);
-        mWebView.loadUrl("http://www.baidu.com");
-        mWebView.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                // TODO Auto-generated method stub
-                //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
-                view.loadUrl(url);
-                return true;
-            }
-        });
-        //可以在规定时间实现透明度的渐变  先加速后减速
-        ObjectAnimator objAnimatorX=ObjectAnimator.ofFloat(mFloatBtn,"translationX",mFloatBtn.getTranslationX(),+500);
-        ObjectAnimator objAnimatorY=ObjectAnimator.ofFloat(mFloatBtn,"translationY",mFloatBtn.getTranslationY(),+500);
-        AnimatorSet animSet = new AnimatorSet();
+    protected void initView() {
+        mFOneloatBtn= (FloatingActionButton) findViewById(R.id.fOneBtn_main);
+        mFTwoloatBtn= (FloatingActionButton) findViewById(R.id.fTwoBtn_main);
+        mFThreeloatBtn= (FloatingActionButton) findViewById(R.id.fThreeBtn_main);
+        //可以在规定时间实现透明度的渐变  先加速后减速  center
+        Log.e("ceshi","宽度"+DisplayUtils.getScreenWidth(mContext)/2);
+        ObjectAnimator objAnimatorX1=ObjectAnimator.ofFloat(mFOneloatBtn,"translationX",mFOneloatBtn.getTranslationX(),DisplayUtils.getScreenWidth(mContext)/2-50);
+        ObjectAnimator objAnimatorY1=ObjectAnimator.ofFloat(mFOneloatBtn,"translationY",mFOneloatBtn.getTranslationY(),DisplayUtils.getScreenHeight(mContext)/2-50);
+        AnimatorSet animSet1 = new AnimatorSet();
         //with表示同时进行   after表示按顺序执行
-        animSet.play(objAnimatorX).with(objAnimatorY);
-        animSet.setDuration(5000);
-        animSet.start();
-//       TextView tv= (TextView) findViewById(R.id.aaaaaaa);
-//        tv.setText("哈哈");
-       Log.e("ceshi","数值CENTER"+((CENTER|BOTTOM)&CENTER));
-        Log.e("ceshi","数值LEFT"+((CENTER|BOTTOM)&LEFT));
-        Log.e("ceshi","数值RIGHT"+((CENTER|BOTTOM)&RIGHT));
-        Log.e("ceshi","数值TOP"+((CENTER|BOTTOM)&TOP));
-        Log.e("ceshi","数值BOTTOM"+((CENTER|BOTTOM)&BOTTOM));
-       float density= getResources().getDisplayMetrics().density;//每英寸有多少个像素点
-       float densityDpi= getResources().getDisplayMetrics().densityDpi;
-        Log.e("ceshi","density===="+density);
-        Log.e("ceshi","densityDpi===="+densityDpi);
+        animSet1.play(objAnimatorX1).with(objAnimatorY1);
+        animSet1.setDuration(5000);
+        animSet1.start();
+//        left
+        ObjectAnimator objAnimatorX2=ObjectAnimator.ofFloat(mFTwoloatBtn,"translationX",mFTwoloatBtn.getTranslationX(), DisplayUtils.getScreenWidth(mContext)/4-50);
+        ObjectAnimator objAnimatorY2=ObjectAnimator.ofFloat(mFTwoloatBtn,"translationY",mFTwoloatBtn.getTranslationY(),DisplayUtils.getScreenHeight(mContext)/4-50);
+        AnimatorSet animSet2 = new AnimatorSet();
+        //with表示同时进行   after表示按顺序执行
+        animSet2.play(objAnimatorX2).with(objAnimatorY2);
+        animSet2.setDuration(5000);
+        animSet2.start();
+//        right
+        ObjectAnimator objAnimatorX3=ObjectAnimator.ofFloat(mFThreeloatBtn,"translationX",mFThreeloatBtn.getTranslationX(), DisplayUtils.getScreenWidth(mContext)*3/4-50);
+        ObjectAnimator objAnimatorY3=ObjectAnimator.ofFloat(mFThreeloatBtn,"translationY",mFThreeloatBtn.getTranslationY(),DisplayUtils.getScreenHeight(mContext)*3/4-50);
+        AnimatorSet animSet3 = new AnimatorSet();
+        //with表示同时进行   after表示按顺序执行
+        animSet3.play(objAnimatorX3).with(objAnimatorY3);
+        animSet3.setDuration(5000);
+        animSet3.start();
+        float density= getResources().getDisplayMetrics().density;//每英寸有多少个像素点
+        float densityDpi= getResources().getDisplayMetrics().densityDpi;
 
         //实现数值的渐变    先加速后减速
         ValueAnimator valueAnimator=ValueAnimator.ofFloat(5f,1f,3f,8f);
@@ -87,31 +78,21 @@ FloatingActionButton mFloatBtn;
                 Log.e("ValueAnimator",""+animation.getAnimatedFraction()+Thread.currentThread().getName());
             }
         });
+        setOnClickListeners(this,mFOneloatBtn,mFTwoloatBtn,mFThreeloatBtn);
         valueAnimator.start();
-        mFloatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Retrofit retrofit=new Retrofit.Builder().baseUrl("http://ip.taobao.com")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                ApiService apiService = retrofit.create(ApiService.class);
+    }
 
-//                mProgressBar.setVisibility(View.VISIBLE);
-
-                Call<GetIpInfoResponse> call = apiService.getIpInfo("63.223.108.42");
-                call.enqueue(new Callback<GetIpInfoResponse>() {
-                    @Override
-                    public void onResponse(Response<GetIpInfoResponse> response, Retrofit retrofit) {
-
-                    }
-
-                    @Override
-                    public void onFailure(Throwable t) {
-
-                    }
-                });
-            }
-        });
-        //
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.fOneBtn_main:
+                Intent intent=new Intent(mContext, TwoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.fTwoBtn_main:
+                break;
+            case R.id.fThreeBtn_main:
+                break;
+        }
     }
 }

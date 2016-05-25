@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 println("I'm now compiling with gradle " + project.gradle.gradleVersion);
-println("I'm now compiling with gradle " + project.gradle.getPlugins());
 android {
     compileSdkVersion 23
     buildToolsVersion "24.0.0 rc1"
@@ -26,7 +25,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support:support-v4:23.4.0'
-    compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
-    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'//加载网络图片
+    compile 'com.jakewharton:butterknife:7.0.1'//注解
+    compile 'de.greenrobot:eventbus:2.4.0'//通知
+    compile 'com.loopj.android:android-async-http:1.4.9'//网络请求
+    compile 'com.alibaba:fastjson:1.2.7'//json解析
+
 }
